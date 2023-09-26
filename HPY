@@ -73,3 +73,4 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 sudo systemctl restart celestia-appd && journalctl -u celestia-appd -f -o cat
 curl -s localhost:26657/status | grep block_height
+celestia-appd keys add $CELESTIA_WALLET
