@@ -49,8 +49,7 @@ tee $HOME/celestia-appd.service > /dev/null <<EOF
 [Unit]
   Description=celestia-appd Cosmos daemon
   After=network-online.target
-[Service]
-  User=$USER
+
  
  
 
