@@ -21,4 +21,3 @@ cd $HOME
 rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 celestia-appd version
-echo 'export CELESTIA_CHAIN='$CELESTIA_CHAIN >> $HOME/.bash_profile
