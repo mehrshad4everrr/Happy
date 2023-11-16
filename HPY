@@ -7,3 +7,9 @@ install curl tar wget clang pkg-config libssl-dev
 sudo apt upgrade
 install curl tar wget clang
 cd $HOME
+cd $HOME
+rm -rf celestia-app
+git clone https://github.com/celestiaorg/celestia-app.git
+cd celestia-app
+git checkout v0.6.0
+make install
