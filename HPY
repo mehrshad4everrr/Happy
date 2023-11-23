@@ -24,3 +24,4 @@ cd $HOME
 rm -rf celestia-app
 celestia-appd config chain-id $CELESTIA_CHAIN
 celestia-appd config keyring-backend test
+cd $home
