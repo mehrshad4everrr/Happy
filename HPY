@@ -30,3 +30,4 @@ install curl tar wget clang pkg-config libssl-dev
 cd $HOME
 rm -rf celestia-app
 celestia version
+make install
