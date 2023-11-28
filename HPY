@@ -35,3 +35,5 @@ install curl tar wget clang pkg-config libssl-dev
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu -y
 cd $home
 install curl tar wget clang pkg-config libssl-dev
+git checkout v0.6.0
+make install
