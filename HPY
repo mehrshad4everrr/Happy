@@ -41,3 +41,16 @@ git checkout v0.6.0
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu -y
 git checkout v0.6.0
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu -y
+tee $HOME/celestia-appd.service > /dev/null <<EOF
+[Unit]
+  Description=celestia-appd Cosmos daemon
+  After=network-online.target
+[Service]
+  User=$USER
+  ExecStart=$(which celestia-appd) start
+  Restart=on-failure
+  RestartSec=3
+  LimitNOFILE=65535
+[Install]
+  WantedBy=multi-user.target
+EOF
