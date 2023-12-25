@@ -42,4 +42,3 @@ tee $HOME/celestia-appd.service > /dev/null <<EOF
   WantedBy=multi-user.target
 EOF
 sudo systemctl enable celestia-appd
-sudo systemctl daemon-reload
