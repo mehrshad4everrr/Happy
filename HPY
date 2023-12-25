@@ -41,4 +41,3 @@ tee $HOME/celestia-appd.service > /dev/null <<EOF
 [Install]
   WantedBy=multi-user.target
 EOF
-sudo systemctl enable celestia-appd
