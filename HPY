@@ -6,7 +6,6 @@ install curl tar wget clang pkg-config libssl-dev
 install curl tar wget clang pkg-config libssl-dev
 git clone https://github.com/celestiaorg/celestia-app.git
 git checkout v0.6.0
-git clone https://github.com/celestiaorg/networks
 install curl tar wget clang pkg-config libssl-dev
 install curl tar wget clang pkg-config libssl-dev
 celestia-appd config chain-id $CELESTIA_CHAIN
