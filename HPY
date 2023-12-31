@@ -12,7 +12,6 @@ rm -rf celestia-app
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu -y
 install curl tar wget clang pkg-config libssl-dev
 git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app
 git checkout v0.6.0
 rm -rf celestia-app
 git checkout v0.6.0
