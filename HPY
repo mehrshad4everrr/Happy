@@ -4,4 +4,3 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 tee $HOME/celestia-appd.service > /dev/null <<EOF
   After=network-online.target
 [Service]
-  User=$USER
