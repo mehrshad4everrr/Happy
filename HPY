@@ -1,1 +1,598 @@
+//@version=5
+//@kingofmad
+indicator(title='Balance', shorttitle='TimeTrading', overlay=true, max_lines_count=500, max_labels_count=500, max_bars_back=5000)
+ts_bars =9
+ks_bars = 26
+cs_offset = 26
+ss_offset = 26
+displacementChikouSpan = -26
+displacementKumo = 26
+QualityLine = 30
+kijunSen103 = 103
+kijunSen216 = 216
+kijunSen432 = 432
+long_entry = input.bool(true, title='Long Entry', group='Signal')
+short_entry = input.bool(true, title='Short Entry', group='Signal')
+wait_for_cloud = input.bool(true, title='Wait for Cloud Confirmation', group='Signal')
+use_atr_entry = input.bool(true, title=' Super Trend Use for Entry', group='Signal')
+dropn(src7, n) =>
+    na(src7[n]) ? na : src7
+src7 = close
+length1 = input.int(defval=20, title='EMA20', group='Moving Average', minval=1)
+length2 = input.int(defval=50, title='EMA50', group='Moving Average', minval=1)
+length3 = input.int(defval=100, title='EMA100', group='Moving Average', minval=1)
+length4 = input.int(defval=200, title='EMA200', group='Moving Average', minval=1)
+dropCandles = 1
+price = dropn(src7, dropCandles)
+//@kingofmad
+showts_bars = input.bool(true, title='show Tenkan-Sen', group='Ichimoku Cloud')
+showks_bars = input.bool(true, title='show Kijun-Sen', group='Ichimoku Cloud')
+showChikouSpan = input.bool(true, title='show Chikou-Span', group='Ichimoku Cloud')
+showssb_bars = input.bool(true, title='show Kumo Clouds', group='Ichimoku Cloud')
+showQualityLine = input.bool(true, title='show Quality Line', group='Ichimoku Cloud')
+showPeriods216 = input.bool(true, title='show Time Balance 2x', group='Ichimoku Cloud')
+showPeriods432 = input.bool(true, title='show Time Balance 4x', group='Ichimoku Cloud')
+showFutureKijunSen103 = input.bool(true, title='Future Time Balance 1x', group='Ichimoku Cloud')
+showema50 = input.bool(false, title=' show ema50', group='Moving Average')
+showema100 = input.bool(true, title=' show ema100', group='Moving Average')
+showema200 = input.bool(true, title=' show ema200', group='Moving Average')
+//@kingofmad
+donchian(len) =>
+    math.avg(ta.lowest(len), ta.highest(len))
+tenkanSenLine = donchian(ts_bars)
+kijunSenLine = donchian(ks_bars)
+senkouSpanALine = math.avg(tenkanSenLine, kijunSenLine)
+senkouSpanBLine = donchian(52)
+periodLine103 = donchian(kijunSen103)
+periodLine216 = donchian(kijunSen216)
+periodLine432 = donchian(kijunSen432)
+line20 = ta.ema(price, length1)
+line50 = ta.ema(price, length2)
+line100 = ta.ema(price, length3)
+line200 = ta.ema(price, length4)
+futurePoint1(len) =>
+    math.avg(ta.highest(len - 1), ta.lowest(len - 1))
+futurePoint2(len) =>
+    math.avg(ta.highest(len - 2), ta.lowest(len - 2))
+futurePoint3(len) =>
+    math.avg(ta.highest(len - 3), ta.lowest(len - 3))
+futurePoint4(len) =>
+    math.avg(ta.highest(len - 4), ta.lowest(len - 4))
+futurePoint5(len) =>
+    math.avg(ta.highest(len - 5), ta.lowest(len - 5))
+futurePoint6(len) =>
+    math.avg(ta.highest(len - 6), ta.lowest(len - 6))
+futurePoint7(len) =>
+    math.avg(ta.highest(len - 7), ta.lowest(len - 7))
+futurePoint8(len) =>
+    math.avg(ta.highest(len - 8), ta.lowest(len - 8))
+futurePoint9(len) =>
+    math.avg(ta.highest(len - 9), ta.lowest(len - 9))
+futurePoint10(len) =>
+    math.avg(ta.highest(len - 10), ta.lowest(len - 10))
+futurePoint11(len) =>
+    math.avg(ta.highest(len - 11), ta.lowest(len - 11))
+futurePoint12(len) =>
+    math.avg(ta.highest(len - 12), ta.lowest(len - 12))
+futurePoint13(len) =>
+    math.avg(ta.highest(len - 13), ta.lowest(len - 13))
+futurePoint14(len) =>
+    math.avg(ta.highest(len - 14), ta.lowest(len - 14))
+futurePoint15(len) =>
+    math.avg(ta.highest(len - 15), ta.lowest(len - 15))
+futurePoint16(len) =>
+    math.avg(ta.highest(len - 16), ta.lowest(len - 16))
+futurePoint17(len) =>
+    math.avg(ta.highest(len - 17), ta.lowest(len - 17))
+futurePoint18(len) =>
+    math.avg(ta.highest(len - 18), ta.lowest(len - 18))
+futurePoint19(len) =>
+    math.avg(ta.highest(len - 19), ta.lowest(len - 19))
+futurePoint20(len) =>
+    math.avg(ta.highest(len - 20), ta.lowest(len - 20))
+futurePoint21(len) =>
+    math.avg(ta.highest(len - 21), ta.lowest(len - 21))
+futurePoint22(len) =>
+    math.avg(ta.highest(len - 22), ta.lowest(len - 22))
+futurePoint23(len) =>
+    math.avg(ta.highest(len - 23), ta.lowest(len - 23))
+futurePoint24(len) =>
+    math.avg(ta.highest(len - 24), ta.lowest(len - 24))
+futurePoint25(len) =>
+    math.avg(ta.highest(len - 25), ta.lowest(len - 25))
+futurePoint26(len) =>
+    math.avg(ta.highest(len - 26), ta.lowest(len - 26))
+futurePoint27(len) =>
+    math.avg(ta.highest(len - 27), ta.lowest(len - 27))
+futurePoint28(len) =>
+    math.avg(ta.highest(len - 28), ta.lowest(len - 28))
+futurePoint29(len) =>
+    math.avg(ta.highest(len - 29), ta.lowest(len - 29))
+futurePoint30(len) =>
+    math.avg(ta.highest(len - 30), ta.lowest(len - 30))
+futurePoint31(len) =>
+    math.avg(ta.highest(len - 31), ta.lowest(len - 31))
+futurePoint32(len) =>
+    math.avg(ta.highest(len - 32), ta.lowest(len - 32))
+futurePoint33(len) =>
+    math.avg(ta.highest(len - 33), ta.lowest(len - 33))
+futurePoint34(len) =>
+    math.avg(ta.highest(len - 34), ta.lowest(len - 34))
+futurePoint35(len) =>
+    math.avg(ta.highest(len - 35), ta.lowest(len - 35))
+futurePoint36(len) =>
+    math.avg(ta.highest(len - 36), ta.lowest(len - 36))
+futurePoint37(len) =>
+    math.avg(ta.highest(len - 37), ta.lowest(len - 37))
+futurePoint38(len) =>
+    math.avg(ta.highest(len - 38), ta.lowest(len - 38))
+futurePoint39(len) =>
+    math.avg(ta.highest(len - 39), ta.lowest(len - 39))
+futurePoint40(len) =>
+    math.avg(ta.highest(len - 40), ta.lowest(len - 40))
+futurePoint41(len) =>
+    math.avg(ta.highest(len - 41), ta.lowest(len - 41))
+futurePoint42(len) =>
+    math.avg(ta.highest(len - 42), ta.lowest(len - 42))
+futurePoint43(len) =>
+    math.avg(ta.highest(len - 43), ta.lowest(len - 43))
+futurePoint44(len) =>
+    math.avg(ta.highest(len - 44), ta.lowest(len - 44))
+futurePoint45(len) =>
+    math.avg(ta.highest(len - 45), ta.lowest(len - 45))
+futurePoint46(len) =>
+    math.avg(ta.highest(len - 46), ta.lowest(len - 46))
+futurePoint47(len) =>
+    math.avg(ta.highest(len - 47), ta.lowest(len - 47))
+futurePoint48(len) =>
+    math.avg(ta.highest(len - 48), ta.lowest(len - 48))
+futurePoint49(len) =>
+    math.avg(ta.highest(len - 49), ta.lowest(len - 49))
+futurePoint50(len) =>
+    math.avg(ta.highest(len - 50), ta.lowest(len - 50))
+futurePoint51(len) =>
+    math.avg(ta.highest(len - 51), ta.lowest(len - 51))
+futurePoint53(len) =>
+    math.avg(ta.highest(len - 53), ta.lowest(len - 53))
+futurePoint55(len) =>
+    math.avg(ta.highest(len - 55), ta.lowest(len - 55))
+plotshape(close, style=shape.square, color=close > close[-displacementChikouSpan] ? color.new(#0bc812, 50) : color.new(#e74a4a, 50), size=size.small, location=location.absolute, offset=displacementChikouSpan + 1, show_last=1, title='Lagging Price Shape')
+h1 = ta.highest(high, QualityLine)
+l1 = ta.lowest(low, QualityLine)
+QualityLin = (h1 + l1) / 2
+c1 = close > QualityLin ? color.teal : color.fuchsia
+plot(QualityLin, color=c1, offset=displacementKumo, linewidth=3, title='shift')
+plot(showts_bars and tenkanSenLine ? tenkanSenLine : na, title='Tenkan-Sen', linewidth=1, color=#3179F5FF)
+plot(showks_bars and kijunSenLine ? kijunSenLine : na, title='Kijun-Sen', linewidth=1, color=#F44336FF)
+ichimoku_onf = input.bool(true, 'Ichimoku On/Off', group='☁️ Ichimoku Cloud ☁️')
+chikouof = input.bool(true, 'Chikou Span', group='☁️ Ichimoku Cloud ☁️')
+chikouSpan = close
+chikou_up = close > high[26] and close > high[25] and close > high[24] and close > high[23] and close > high[22] and close > high[21] and close > high[20] and close > high[19] and close > high[18] and close > high[17] and close > high[16]
+chikou_dn = close < low[26] and close < low[25] and close < low[24] and close < low[23] and close < low[22] and close < low[21] and close < low[20] and close < low[19] and close < low[18] and close < low[17] and close < low[16]
+chikou_clr = chikou_up ? #069d0c : chikou_dn ? #ea1000 : #7e8086
+plot_chikouSpan = plot(ichimoku_onf ? chikouSpan : na, offset=-26, color=not chikouof ? na : chikou_clr, linewidth=1,style=plot.style_stepline, title='Chikou Span')
+bton(b) =>
+    b ? 1 : 0
+KumoA = plot(showssb_bars and senkouSpanALine ? senkouSpanALine : na, title='Senkou-Span A', offset=displacementKumo, color=color.new(#17e521, 0))
+KumoB = plot(showssb_bars and senkouSpanBLine ? senkouSpanBLine : na, title='Senkou-Span B', offset=displacementKumo, color=color.new(#f43636, 0))
+fill(KumoA, KumoB, title='Kumo Clouds', color=senkouSpanALine > senkouSpanBLine ? color.rgb(49, 121, 245, 88) : color.rgb(230, 81, 0, 88), transp=90)
+plot(showPeriods216 and periodLine216 ? periodLine216 : na, title='Time Balance 2x', linewidth=3, color=#827717FF)
+plot(showPeriods432 and periodLine432 ? periodLine432 : na, title='Time Balance 3x', linewidth=3, color=color.new(color.maroon, 0))
+plot(showema50 and line50 ? line50 : na, title='EMA 50', color=color.new(color.orange, 0), linewidth=1)
+plot(showema100 and line100 ? line100 : na, title='EMA 100', color=color.new(color.lime, 0), linewidth=2)
+plot(showema200 and line200 ? line200 : na, title='EMA 200', color=color.new(color.blue, 0), linewidth=3)
+//@kingofmad
+tenkan = donchian(ts_bars)
+kijun = donchian(ks_bars)
+senkouA = math.avg(tenkan, kijun)
+senkouB = donchian(52)
+ss_high = math.max(senkouA[ss_offset - 1], senkouB[ss_offset - 1])
+ss_low = math.min(senkouA[ss_offset - 1], senkouB[ss_offset - 1])
+tk_cross_bull = tenkan > kijun
+tk_cross_bear = tenkan < kijun
+cs_cross_bull = ta.mom(close, cs_offset - 1) > 0
+cs_cross_bear = ta.mom(close, cs_offset - 1) < 0
+price_above_kumo = close > ss_high
+price_below_kumo = close < ss_low
+senkou_green = senkouA > senkouB ? true : false
+k_cross_bull = close > periodLine103
+k_cross_bear = close < periodLine103
+q_cross_bull = periodLine103 > QualityLin[26]
+q_cross_bear = periodLine103 < QualityLin[26]
+chi_cross_bull = chikouSpan[-displacementChikouSpan] > tenkan
+chi_cross_bear = chikouSpan[-displacementChikouSpan] < tenkan
+t1 = input.symbol(title='Ticker1', defval='BINANCE:BTCUSDT')
+t2 = input.symbol(title='Ticker2', defval='CRYPTOCAP:USDT.D')
+t3 = input.symbol(title='Ticker3', defval='TVC:DXY')
+t4 = input.symbol(title='Ticker4', defval='VANTAGE:SP500')
+Factor = input.float(3, title='[SUPERTREND] Factor', minval=1, maxval=100)
+Pd = input.int(10, title='[SUPERTREND] PD', minval=1, maxval=100)
+showscr = input(true, title='Show Screener Label')
+posX_scr = input(40, title='Pos. Label x-axis')
+posY_scr = 1
+colinput = input.string(title='Label Color', defval='Black', options=['White', 'Black', 'Red', 'Green', 'Yellow', 'Blue'])
 
+col = color.gray
+if colinput == 'white'
+    col := color.white
+    col
+if colinput == 'Black'
+    col := color.black
+    col
+if colinput == 'Red'
+    col := color.red
+    col
+if colinput == 'Green'
+    col := color.green
+    col
+if colinput == 'Yellow'
+    col := color.yellow
+    col
+if colinput == 'Blue'
+    col := color.blue
+    col
+
+Supertrend(Factor, Pd) =>
+    Up = hl2 - Factor * ta.atr(Pd)
+    Dn = hl2 + Factor * ta.atr(Pd)
+
+    TrendUp = 0.0
+    TrendUp := close[1] > TrendUp[1] ? math.max(Up, TrendUp[1]) : Up
+    TrendDown = 0.0
+    TrendDown := close[1] < TrendDown[1] ? math.min(Dn, TrendDown[1]) : Dn
+    Trend = 0.0
+    Trend := close > TrendDown[1] ? 1 : close < TrendUp[1] ? -1 : nz(Trend[1], 1)
+    Tsl = Trend == 1 ? TrendUp : TrendDown
+    S_Buy = Trend == 1 ? 1 : 0
+    S_Sell = Trend != 1 ? 1 : 0
+
+    [Trend, Tsl]
+
+[Trend, Tsl] = Supertrend(Factor, Pd)
+TrendReversal = Trend != Trend[1]
+[t01, s01] = request.security(t1, timeframe.period, Supertrend(Factor, Pd))
+[t02, s02] = request.security(t2, timeframe.period, Supertrend(Factor, Pd))
+[t03, s03] = request.security(t3, timeframe.period, Supertrend(Factor, Pd))
+[t04, s04] = request.security(t4, timeframe.period, Supertrend(Factor, Pd))
+tr01 = t01 != t01[1]
+up01 = t01 == 1
+dn01 = t01 == -1
+tr02 = t02 != t02[1]
+up02 = t02 == 1
+dn02 = t02 == -1
+tr03 = t03 != t03[1]
+up03 = t03 == 1
+dn03 = t03 == -1
+tr04 = t04 != t04[1]
+up04 = t04 == 1
+dn04 = t04 == -1
+pot_label = 'احتمال تغییر روند \n'
+pot_label := tr01 ? pot_label + t1 + '\n' : pot_label
+pot_label := tr02 ? pot_label + t2 + '\n' : pot_label
+pot_label := tr03 ? pot_label + t3 + '\n' : pot_label
+pot_label := tr04 ? pot_label + t4 + '\n' : pot_label
+scr_label = 'تغییر روند تایید شده \n'
+scr_label := tr01[1] ? scr_label + t1 + '\n' : scr_label
+scr_label := tr02[1] ? scr_label + t2 + '\n' : scr_label
+scr_label := tr03[1] ? scr_label + t3 + '\n' : scr_label
+scr_label := tr04[1] ? scr_label + t4 + '\n' : scr_label
+up_label = 'روند صعودی \n'
+up_label := up01[1] ? up_label + t1 + '\n' : up_label
+up_label := up02[1] ? up_label + t2 + '\n' : up_label
+up_label := up03[1] ? up_label + t3 + '\n' : up_label
+up_label := up04[1] ? up_label + t4 + '\n' : up_label
+dn_label = 'روند نزولی \n'
+dn_label := dn01[1] ? dn_label + t1 + '\n' : dn_label
+dn_label := dn02[1] ? dn_label + t2 + '\n' : dn_label
+dn_label := dn03[1] ? dn_label + t3 + '\n' : dn_label
+dn_label := dn04[1] ? dn_label + t4 + '\n' : dn_label
+f_colorscr(_valscr) =>
+    _valscr ? color.white : na
+f_printscr(_txtscr) =>
+    var _lblscr = label(na)
+    label.delete(_lblscr)
+    _lblscr := label.new(time + (time - time[1]) * posX_scr, ohlc4[posY_scr], _txtscr, xloc.bar_time, yloc.price, f_colorscr(showscr), textcolor=showscr ? col : na, size=size.normal, style=label.style_label_center)
+    _lblscr
+f_printscr(scr_label + '\n' + pot_label + '\n' + up_label + '\n' + dn_label)
+st_security(_symbol, _res, _src) =>
+    request.security(_symbol, _res, _src[barstate.isrealtime ? 1 : 0])
+ST_Trend = st_security(syminfo.tickerid, timeframe.period, Trend)
+ST_Tsl = st_security(syminfo.tickerid, timeframe.period, Tsl)
+buySignal = ST_Trend == 1 and ST_Trend[1] == -1
+sellSignal = ST_Trend == -1 and ST_Trend[1] == 1
+
+bullish = tk_cross_bull and cs_cross_bull and price_above_kumo and q_cross_bull
+bearish = tk_cross_bear and cs_cross_bear and price_below_kumo and q_cross_bear
+if wait_for_cloud
+    bullish := bullish and senkou_green
+    bearish := bearish and not senkou_green
+    bearish
+
+if use_atr_entry
+    bullish := buySignal
+    bearish := sellSignal
+    bearish
+in_long = false
+in_long := in_long[1]
+
+open_long = bullish and not in_long
+open_short = bearish and in_long
+if open_long
+    in_long := true
+    in_long
+if open_short
+    in_long := false
+    in_long
+//kingofmad
+plotshape(open_long and long_entry, title='buy', text='buy', style=shape.labelup, textcolor=color.new(color.black, 0), size=size.tiny, location=location.belowbar, color=color.new(color.lime, 0))
+plotshape(open_short and short_entry, title='sell', text='sell', style=shape.labeldown, textcolor=color.new(color.white, 0), size=size.tiny, location=location.abovebar, color=color.new(color.red, 0))
+futureKijunSe1 = futurePoint1(kijunSen103)
+futureKijunSe2 = futurePoint2(kijunSen103)
+futureKijunSe3 = futurePoint3(kijunSen103)
+futureKijunSe4 = futurePoint4(kijunSen103)
+futureKijunSe5 = futurePoint5(kijunSen103)
+futureKijunSe6 = futurePoint6(kijunSen103)
+futureKijunSe7 = futurePoint7(kijunSen103)
+futureKijunSe8 = futurePoint8(kijunSen103)
+futureKijunSe9 = futurePoint9(kijunSen103)
+futureKijunSe10 = futurePoint10(kijunSen103)
+futureKijunSe11 = futurePoint11(kijunSen103)
+futureKijunSe12 = futurePoint12(kijunSen103)
+futureKijunSe13 = futurePoint13(kijunSen103)
+futureKijunSe14 = futurePoint14(kijunSen103)
+futureKijunSe15 = futurePoint15(kijunSen103)
+futureKijunSe16 = futurePoint16(kijunSen103)
+futureKijunSe17 = futurePoint17(kijunSen103)
+futureKijunSe18 = futurePoint18(kijunSen103)
+futureKijunSe19 = futurePoint19(kijunSen103)
+futureKijunSe20 = futurePoint20(kijunSen103)
+futureKijunSe21 = futurePoint21(kijunSen103)
+futureKijunSe22 = futurePoint22(kijunSen103)
+futureKijunSe23 = futurePoint23(kijunSen103)
+futureKijunSe24 = futurePoint24(kijunSen103)
+futureKijunSe25 = futurePoint25(kijunSen103)
+futureKijunSe26 = futurePoint26(kijunSen103)
+futureKijunSe27 = futurePoint27(kijunSen103)
+futureKijunSe28 = futurePoint28(kijunSen103)
+futureKijunSe29 = futurePoint29(kijunSen103)
+futureKijunSe30 = futurePoint30(kijunSen103)
+futureKijunSe31 = futurePoint31(kijunSen103)
+futureKijunSe32 = futurePoint32(kijunSen103)
+futureKijunSe33 = futurePoint33(kijunSen103)
+futureKijunSe34 = futurePoint34(kijunSen103)
+futureKijunSe35 = futurePoint35(kijunSen103)
+futureKijunSe36 = futurePoint36(kijunSen103)
+futureKijunSe37 = futurePoint37(kijunSen103)
+futureKijunSe38 = futurePoint38(kijunSen103)
+futureKijunSe39 = futurePoint39(kijunSen103)
+futureKijunSe40 = futurePoint40(kijunSen103)
+futureKijunSe41 = futurePoint41(kijunSen103)
+futureKijunSe42 = futurePoint42(kijunSen103)
+futureKijunSe43 = futurePoint43(kijunSen103)
+futureKijunSe44 = futurePoint44(kijunSen103)
+futureKijunSe45 = futurePoint45(kijunSen103)
+futureKijunSe46 = futurePoint46(kijunSen103)
+futureKijunSe47 = futurePoint47(kijunSen103)
+futureKijunSe48 = futurePoint48(kijunSen103)
+futureKijunSe49 = futurePoint49(kijunSen103)
+futureKijunSe50 = futurePoint50(kijunSen103)
+futureKijunSe51 = futurePoint51(kijunSen103)
+futureKijunSe53 = futurePoint53(kijunSen103)
+futureKijunSe55 = futurePoint55(kijunSen103)
+//kingofmad
+Midpoint1(length) =>
+    math.avg(ta.highest(length), ta.lowest(length))
+
+kijunTimeFrame1 = input.timeframe('360')
+kijunPeriods1 = 103
+kijun1 = request.security(syminfo.tickerid, kijunTimeFrame1, Midpoint1(kijunPeriods1))
+Line6h_line = input(true, title='Show Time Balance 6H Line')
+plot(Line6h_line ? kijun1 : na, title='Time Balance 6H ', style=plot.style_linebr, color=color.new(color.green, 0), linewidth=2)
+
+kijunTimeFrame2 = input.timeframe('720')
+kijunPeriods2 = 103
+kijun2 = request.security(syminfo.tickerid, kijunTimeFrame2, Midpoint1(kijunPeriods2))
+Line12h_line = input(true, title='Show Time Balance 12H Line')
+plot(Line12h_line ? kijun2 : na, title='Time Balance 12H ', style=plot.style_linebr, color=color.new(color.gray, 0), linewidth=2)
+kijunTimeFrame3 = input.timeframe('D')
+kijunPeriods3 = 103
+kijun3 = request.security(syminfo.tickerid, kijunTimeFrame3, Midpoint1(kijunPeriods3))
+daily103_line = input(true, title='Show Time Balance daily Linee')
+plot(daily103_line ? kijun3 : na, title=' Time Balance daily Line  ', color=color.new(#000000, 0), linewidth=4)
+kijunTimeFrame4 = input.timeframe('W')
+kijunPeriods4 = 103
+kijun4 = request.security(syminfo.tickerid, kijunTimeFrame4, Midpoint1(kijunPeriods4))
+week103_line = input(true, title='Show Time Balance weekly Line')
+plot(week103_line ? kijun4 : na, title='Time Balance weekly Line ', color=color.new(#1bf3de, 0), linewidth=4)
+kijunTimeFrame5 = input.timeframe('D')
+kijunPeriods5 = 26
+kijun5 = request.security(syminfo.tickerid, kijunTimeFrame5, Midpoint1(kijunPeriods5))
+kij_line5 = input(true, title='Show kojunsen daily Line')
+plot(kij_line5 ? kijun5 : na, title='kijunsen daily ', color=color.new(color.red, 0), linewidth=1)
+//kingofmad
+toggleBreaks = input(true, title='Show Breaks')
+leftBars = 15
+rightBars = 15
+volumeThresh = 20
+highUsePivot = fixnan(ta.pivothigh(leftBars, rightBars)[1])
+lowUsePivot = fixnan(ta.pivotlow(leftBars, rightBars)[1])
+r10 = plot(highUsePivot, color=ta.change(highUsePivot) ? na : #FF0000, style=plot.style_cross, linewidth=1, offset=-(rightBars + 1), title='Resistance Past')
+s10 = plot(lowUsePivot, color=ta.change(lowUsePivot) ? na : #233dee, style=plot.style_cross, linewidth=1, offset=-(rightBars + 1), title='Support Past')
+pvtLenL = 5
+pvtLenR = 5
+showStop = input(true, title='Show Recent Low Stop?')
+showStopshort = input(true, title='Show Recent Low Stop?')
+pvthi_ = ta.pivothigh(high, pvtLenL, pvtLenR)
+pvtlo_ = ta.pivotlow(low, pvtLenL, pvtLenR)
+
+// Force Pivot completion before plotting.
+Shunt = 1  //Wait for close before printing pivot? 1 for true 0 for flase
+maxLvlLen = 0  //Maximum Extension Length
+pvthi = pvthi_[Shunt]
+pvtlo = pvtlo_[Shunt]
+// Count How many candles for current Pivot Level, If new reset.
+counthi = ta.barssince(not na(pvthi))
+countlo = ta.barssince(not na(pvtlo))
+pvthis = fixnan(pvthi)
+pvtlos = fixnan(pvtlo)
+hipc = ta.change(pvthis) != 0 ? na : color.maroon
+lopc = ta.change(pvtlos) != 0 ? na : color.green
+// Stop Levels
+stopLevel = ta.valuewhen(pvtlo_, low[pvtLenR], 0)
+plotStopLevel = showStop == true ? stopLevel : na
+plot(plotStopLevel, title='Support', style=plot.style_line, color=color.new(color.orange, 50), show_last=1, linewidth=2, offset=-(rightBars + 1), trackprice=true)
+stopLevel1 = ta.valuewhen(pvthi_, high[pvtLenL], 0)
+plotStopLevel1 = showStopshort == true ? stopLevel1 : na
+plot(plotStopLevel1, title='Resistance', style=plot.style_line, color=color.new(color.blue, 50), show_last=1, linewidth=2, offset=-(rightBars + 1), trackprice=true)
+var table logo = table.new(position.bottom_right, 2, 2)
+if barstate.islast
+    table.cell(logo, 1, 0, '👀', text_size=size.normal, text_color=color.blue,bgcolor=color.white)
+    table.cell(logo, 0, 0, "ONYX",text_size=size.tiny, text_color=color.blue)
+//@kingofmad
+plot(showFutureKijunSen103 and futureKijunSe1 ? futureKijunSe1 : na, title='Future Kijunsen', linewidth=2, offset=1, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe3 ? futureKijunSe3 : na, title='Future Kijunsen', linewidth=2, offset=3, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe5 ? futureKijunSe5 : na, title='Future Kijunsen', linewidth=2, offset=5, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe7 ? futureKijunSe7 : na, title='Future Kijunsen', linewidth=2, offset=7, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe9 ? futureKijunSe9 : na, title='Future Kijunsen', linewidth=2, offset=9, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe11 ? futureKijunSe11 : na, title='Future Kijunsen', linewidth=2, offset=11, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe13 ? futureKijunSe13 : na, title='Future Kijunsen', linewidth=2, offset=13, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe15 ? futureKijunSe15 : na, title='Future Kijunsen', linewidth=2, offset=15, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe17 ? futureKijunSe17 : na, title='Future Kijunsen', linewidth=2, offset=17, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe19 ? futureKijunSe19 : na, title='Future Kijunsen', linewidth=2, offset=19, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe21 ? futureKijunSe21 : na, title='Future Kijunsen', linewidth=2, offset=21, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe23 ? futureKijunSe23 : na, title='Future Kijunsen', linewidth=2, offset=23, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe25 ? futureKijunSe25 : na, title='Future Kijunsen', linewidth=2, offset=25, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe27 ? futureKijunSe27 : na, title='Future Kijunsen', linewidth=2, offset=27, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe29 ? futureKijunSe29 : na, title='Future Kijunsen', linewidth=2, offset=29, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe31 ? futureKijunSe31 : na, title='Future Kijunsen', linewidth=2, offset=31, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe33 ? futureKijunSe33 : na, title='Future Kijunsen', linewidth=2, offset=33, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe35 ? futureKijunSe35 : na, title='Future Kijunsen', linewidth=2, offset=35, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe37 ? futureKijunSe37 : na, title='Future Kijunsen', linewidth=2, offset=37, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe39 ? futureKijunSe39 : na, title='Future Kijunsen', linewidth=2, offset=39, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe41 ? futureKijunSe41 : na, title='Future Kijunsen', linewidth=2, offset=41, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe43 ? futureKijunSe43 : na, title='Future Kijunsen', linewidth=2, offset=43, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe45 ? futureKijunSe45 : na, title='Future Kijunsen', linewidth=2, offset=45, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe47 ? futureKijunSe47 : na, title='Future Kijunsen', linewidth=2, offset=47, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe49 ? futureKijunSe49 : na, title='Future Kijunsen', linewidth=2, offset=49, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+plot(showFutureKijunSen103 and futureKijunSe51 ? futureKijunSe51 : na, title='Future Kijunsen', linewidth=2, offset=51, show_last=1, style=plot.style_circles, color=color.new(#000000, 0))
+//@kingofmad
+plot(ta.cross(periodLine103, QualityLin[displacementKumo]) ? periodLine103 : na, color=QualityLin[displacementKumo] - periodLine103 > 0 ? color.red : color.lime, style=plot.style_circles, linewidth=4)
+plot(ta.cross(tenkanSenLine, kijunSenLine) ? tenkanSenLine : na, color=kijunSenLine - tenkanSenLine > 0 ? color.red : color.lime, style=plot.style_cross, linewidth=3)
+plot(ta.cross(line50, line200) ? line50 : na, color=line200 - line50 > 0 ? color.orange : color.blue, style=plot.style_circles, linewidth=4)
+atrlen = 14
+mult = 1
+smoothing = input.string(title='ATR Smoothing', defval='WMA', options=['RMA', 'SMA', 'EMA', 'WMA'])
+
+ma_function(source, atrlen) =>
+    if smoothing == 'RMA'
+        ta.rma(source, atrlen)
+    else
+        if smoothing == 'SMA'
+            ta.sma(source, atrlen)
+        else
+            if smoothing == 'EMA'
+                ta.ema(source, atrlen)
+            else
+                ta.wma(source, atrlen)
+atr_slen = ma_function(ta.tr(true), atrlen)
+////ATR Up/Low Bands
+upper_band = atr_slen * mult + close
+lower_band = close - atr_slen * mult
+////BASELINE / SSL1 / SSL2 / EXIT MOVING AVERAGE VALUES
+maType = 'Kijun v2'
+len = 103
+src = close
+kidiv = 1
+ma(type, src, len) =>
+    float result = 0
+    if type == 'WMA'  // Weighted
+        result := ta.wma(src, len)
+        result
+    if type == 'Kijun v2'
+        kijun = math.avg(ta.lowest(len), ta.highest(len))  //, (open + close)/2)
+        conversionLine = math.avg(ta.lowest(len / kidiv), ta.highest(len / kidiv))
+        delta = (kijun + conversionLine) / 2
+        result := delta
+        result
+    result
+emaHigh = ma(maType, high, len)
+emaLow = ma(maType, low, len)
+///Keltner Baseline Channel
+BBMC = ma(maType, close, len)
+useTrueRange = input(true)
+multy = 0.2
+Keltma = ma(maType, src, len)
+range_1 = useTrueRange ? ta.tr : high - low
+rangema = ta.ema(range_1, len)
+upperk = Keltma + rangema * multy
+lowerk = Keltma - rangema * multy
+//Baseline Violation Candle
+open_pos = open * 1
+close_pos = close * 1
+difference = math.abs(close_pos - open_pos)
+atr_violation = difference > atr_slen
+InRange = upper_band > BBMC and lower_band < BBMC
+candlesize_violation = atr_violation and InRange
+//SSL1 VALUES
+Hlv = int(na)
+Hlv := close > emaHigh ? 1 : close < emaLow ? -1 : Hlv[1]
+sslDown = Hlv < 0 ? emaHigh : emaLow
+//COLORS
+show_color_bar = input(title='Color Bars', defval=true)
+color_bar = close > upperk ? #00c3ff : close < lowerk ? color.orange : color.gray
+color_ssl1 = close > sslDown ? #00c3ff : close < sslDown ? color.orange : na
+//PLOTS
+p1 = plot(BBMC, color=color_bar, linewidth=4, title='Time Balance 1x', transp=0)
+color_bar1 = close > upperk ? #000000 : close < lowerk ? color.yellow : color.gray
+barcolor(color_bar1)
+//kingofmad
+gr6         = ' Table Bgcolor'
+dashColor   = input.color(color.new(#00b2ff,20) , 'Color and Contrast ', group=gr6, inline='3')
+// --------
+Group1        = 'SuperTrend Table '
+TikTab      = input(true, 'SuperTrend Table  ', group=Group1)
+times1         = input.timeframe('5', 'TimeFrame - A', group=Group1)
+times2         = input.timeframe('15', 'TimeFrame - B', group=Group1)
+times3         = input.timeframe('30', 'TimeFrame - C', group=Group1)
+times4         = input.timeframe('60', 'TimeFrame - D', group=Group1)
+times5         = input.timeframe('240',' TimeFrame - E', group=Group1)
+times6         = input.timeframe('720', 'TimeFrame - F', group=Group1)
+times7         = input.timeframe('D', 'imeFrame - G', group=Group1)
+TablePos     = input.string('Top Right', 'Table Position', ['Top Right', 'Middle Right', ' Bottom Left',"Bottom Right"], group=Group1)
+TablePosTextCol     = input.color(color.black, 'Text', inline='1', group=Group1)
+TextSize1   = input.string('Normal', 'Table Font Size', ['Normal', 'Small', ' Large'], group=Group1)
+textSize    = TextSize1=='Normal'? size.small : TextSize1== 'Small'? size.tiny : size.normal 
+tabPos      = TablePos=='Top Right'? position.top_right :  TablePos=='Bottom Left'? position.bottom_left :TablePos==' Middle Right'? position.middle_right:position.bottom_right
+var SuperTrendTable  = table.new(tabPos, 50, 50, color.new(color.black,100), color.new(color.black,100), 1, color.new(color.black,1),1)
+atrPeriod = input(10, "ATR Length")
+factor = input.float(3.0, "Factor", step = 0.01)
+[supertrend, direction] = ta.supertrend(factor, atrPeriod)
+yuseksup = ta.sma(supertrend,1)
+sartsuper= direction < 0 ? 1 : direction > 0 ? -1 : na
+fonksiyonsuper()=>
+    sartsuper
+fonsuperrenk(x) => x== "\n" +"buy" ? color.green : x== "\n" +"sell" ? color.red : na
+fTable(rowNumber,times )=>
+    superyeni = request.security(syminfo.ticker, times, fonksiyonsuper())
+    superrakam= request.security(syminfo.ticker, times, str.tostring(supertrend,format.mintick))
+    yenisuper = superyeni == 1 ? "\n" +"buy"   : superyeni == -1 ? "\n" +"sell"  : na
+    yazisuper = superrakam
+    superrenkli=fonsuperrenk(yenisuper)
+    if TikTab
+        table.cell(SuperTrendTable, 0, 0, "\n"+"TimeFrame"    , text_color=TablePosTextCol, text_size=textSize, bgcolor=color.new(#00b2ff,100))
+        table.cell(SuperTrendTable, 0, 1, 'Trend '    , text_color=TablePosTextCol, text_size=textSize, bgcolor=color.new(#00b2ff,100))
+ 
+        tfDes   = times==''? timeframe.period : times
+        table.cell(SuperTrendTable,rowNumber, 0, tfDes  , text_color=TablePosTextCol, text_size=textSize, bgcolor=dashColor)
+        table.cell(SuperTrendTable,rowNumber, 1, yenisuper, text_color=TablePosTextCol, text_size=textSize, bgcolor=superrenkli)
+        table.cell(SuperTrendTable,rowNumber, 2, yazisuper, text_color=TablePosTextCol, text_size=textSize, bgcolor=superrenkli)
+        
+fTable(1,times1)
+fTable(2,times2)
+fTable(3,times3)
+fTable(4,times4)
+fTable(5,times5)
+fTable(6,times6)
+fTable(7,times7)
+//@kingofmad
+//end
