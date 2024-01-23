@@ -12,7 +12,6 @@ kijunSen103 = 103
 kijunSen432 = 432
 long_entry = input.bool(true, title='Long Entry', group='Signal')
 short_entry = input.bool(true, title='Short Entry', group='Signal')
-wait_for_cloud = input.bool(true, title='Wait for Cloud Confirmation', group='Signal')
 use_atr_entry = input.bool(true, title=' Super Trend Use for Entry', group='Signal')
 dropn(src7, n) =>
     na(src7[n]) ? na : src7
