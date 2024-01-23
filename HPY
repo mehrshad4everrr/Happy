@@ -9,7 +9,6 @@ displacementChikouSpan = -26
 displacementKumo = 26
 QualityLine = 30
 kijunSen103 = 103
-kijunSen216 = 216
 kijunSen432 = 432
 long_entry = input.bool(true, title='Long Entry', group='Signal')
 short_entry = input.bool(true, title='Short Entry', group='Signal')
