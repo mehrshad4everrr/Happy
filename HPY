@@ -4,7 +4,6 @@ indicator(title='Balance', shorttitle='TimeTrading', overlay=true, max_lines_cou
 ts_bars =9
 ks_bars = 26
 cs_offset = 26
-ss_offset = 26
 displacementChikouSpan = -26
 displacementKumo = 26
 QualityLine = 30
