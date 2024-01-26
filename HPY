@@ -2,7 +2,6 @@
 //@kingofmad
 indicator(title='Balance', shorttitle='TimeTrading', overlay=true, max_lines_count=500, max_labels_count=500, max_bars_back=5000)
 ts_bars =9
-ks_bars = 26
 cs_offset = 26
 displacementChikouSpan = -26
 QualityLine = 30
