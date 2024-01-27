@@ -1,4 +1,3 @@
-//@version=5
 //@kingofmad
 indicator(title='Balance', shorttitle='TimeTrading', overlay=true, max_lines_count=500, max_labels_count=500, max_bars_back=5000)
 ts_bars =9
