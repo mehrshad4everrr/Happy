@@ -8,7 +8,6 @@ long_entry = input.bool(true, title='Long Entry', group='Signal')
 short_entry = input.bool(true, title='Short Entry', group='Signal')
 use_atr_entry = input.bool(true, title=' Super Trend Use for Entry', group='Signal')
 dropn(src7, n) =>
-src7 = close
 length1 = input.int(defval=20, title='EMA20', group='Moving Average', minval=1)
 length3 = input.int(defval=100, title='EMA100', group='Moving Average', minval=1)
 length4 = input.int(defval=200, title='EMA200', group='Moving Average', minval=1)
