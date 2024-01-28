@@ -11,7 +11,6 @@ dropn(src7, n) =>
     na(src7[n]) ? na : src7
 src7 = close
 length1 = input.int(defval=20, title='EMA20', group='Moving Average', minval=1)
-length2 = input.int(defval=50, title='EMA50', group='Moving Average', minval=1)
 length3 = input.int(defval=100, title='EMA100', group='Moving Average', minval=1)
 length4 = input.int(defval=200, title='EMA200', group='Moving Average', minval=1)
 dropCandles = 1
