@@ -3,7 +3,6 @@ ts_bars =9
 cs_offset = 26
 displacementChikouSpan = -26
 QualityLine = 30
-kijunSen432 = 432
 long_entry = input.bool(true, title='Long Entry', group='Signal')
 short_entry = input.bool(true, title='Short Entry', group='Signal')
 use_atr_entry = input.bool(true, title=' Super Trend Use for Entry', group='Signal')
