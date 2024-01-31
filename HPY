@@ -8,7 +8,6 @@ length1 = input.int(defval=20, title='EMA20', group='Moving Average', minval=1)
 length3 = input.int(defval=100, title='EMA100', group='Moving Average', minval=1)
 length4 = input.int(defval=200, title='EMA200', group='Moving Average', minval=1)
 price = dropn(src7, dropCandles)
-//@kingofmad
 showts_bars = input.bool(true, title='show Tenkan-Sen', group='Ichimoku Cloud')
 showks_bars = input.bool(true, title='show Kijun-Sen', group='Ichimoku Cloud')
 showChikouSpan = input.bool(true, title='show Chikou-Span', group='Ichimoku Cloud')
